@@ -1,92 +1,96 @@
 import React from "react";
 import Link from "next/link";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    width: "80%",
-    margin: "auto",
-    display: "grid",
-    gridTemplateColumns: "repeat(4,1fr)",
-  },
-  root: {
-    margin: "10px",
-    color: "white",
-    border:"1px solid blue"
-  },
-  media: {
-    height: "50px",
-    paddingTop: "56.25%", // 16:9
-  },
-  btns: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-around",
-  },
-  text: {
-    textDecoration: "none",
-    color: "white",
-  },
-}));
 const Movie = ({ movies, handleNext, handlePrev }) => {
-  const classes = useStyles();
   return (
     <>
-      <div className={classes.container}>
+      <div
+        style={{
+          width: "80%",
+          margin: "auto",
+          display: "grid",
+          gridGap: "20px",
+          gridTemplateColumns: "repeat(4,1fr)",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}>
         {!movies ? (
           <h2>Search Movies....</h2>
         ) : (
-          movies.slice(0, 8).map(({ Title, Poster, Year, imdbID }) => {
+          movies.slice(0, 8).map(({ Title, Poster, Year, imdbID }, i) => {
             return (
-              <Card className={classes.root} key={Poster}>
-                <CardMedia
-                  className={classes.media}
-                  image={Poster}
-                  title={Title}
-                />
-                <CardContent>
-                  <Typography variant='body2' color='textPrimary' component='p'>
-                    Title:{Title}
-                    <br />
-                    Year:{Year}
-                  </Typography>
-                </CardContent>
-                <Button
-                  variant='contained'
-                  type='button'
-                  color='primary'
-                  className={classes.root}>
-                  <Link href={{ pathname: "/fullplot", query: { id: imdbID } }}>
-                    <a className={classes.text}>Movie Details</a>
-                  </Link>
-                </Button>
-              </Card>
+              <div
+                key={i}
+                style={{
+                  border: "1px solid green",
+                  width: "100%",
+                  borderRadius: "20px",
+                  overflow: "hidden",
+                  paddingBottom: "20px",
+                }}>
+                <img src={Poster} alt='poster' style={{ width: "100%" }} />
+                <div style={{ textAlign: "center" }}>
+                  <h3>Title:{Title}</h3>
+                  <h4>Year:{Year}</h4>
+
+                  <div>
+                    <Link
+                      href={{ pathname: "/fullplot", query: { id: imdbID } }}>
+                      <button
+                        style={{
+                          padding: "10px",
+                          border: "none",
+                          outline: "none",
+                          borderRadius: "20px",
+                          background: "blue",
+                          color: "white",
+                        }}>
+                        Movie Details
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             );
           })
         )}
       </div>
 
       {movies && (
-        <div className={classes.btns}>
-          <Button
-            variant='contained'
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}>
+          <button
             type='button'
-            color='default'
+            style={{
+              padding: "10px",
+              width: "10%",
+              border: "none",
+              outline: "none",
+              borderRadius: "20px",
+              background: "green",
+              color: "white",
+            }}
             onClick={handlePrev}>
             prev
-          </Button>{" "}
-          <Button
-            variant='contained'
+          </button>{" "}
+          <button
             type='button'
-            color='default'
+            style={{
+              padding: "10px",
+              width: "10%",
+              border: "none",
+              outline: "none",
+              borderRadius: "20px",
+              background: "green",
+              color: "white",
+            }}
             onClick={handleNext}>
             Next
-          </Button>
+          </button>
         </div>
       )}
     </>

@@ -1,24 +1,9 @@
 import React,{useState} from "react";
 import Link from "next/link";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-    justifyContent: "space-around",
-    listStyle: "none",
-    fontSize: "1rem",
-    fontWeight: "Bold",
-  },
-}));
 
 const fullplot = (props) => {
   const [plot, fullplot] = useState({});
   const id = props.id;
-
-  const classes = useStyles();
 
   const fetchfunc = async () => {
     await fetch(
@@ -35,7 +20,7 @@ const fullplot = (props) => {
   }, [id]);
   return (
     <div>
-      <Link href='/app'>
+      <Link href='/'>
         <a>Home</a>
       </Link>
       {plot.Title ? (
@@ -54,7 +39,16 @@ const fullplot = (props) => {
               style={{ borderRadius: "20px" }}
             />
           </div>
-          <ul className={classes.container}>
+          <ul
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              listStyle: "none",
+              fontSize: "1rem",
+              fontWeight: "Bold",
+            }}>
             <li>Actors:{plot.Actors}</li>
             <li>Country:{plot.Country}</li>
             <li>Genre:{plot.Genre}</li>
