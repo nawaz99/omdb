@@ -83,18 +83,18 @@ const App = () => {
       <div style={{ textAlign: "center" }}>
         <form className={classes.root} noValidate autoComplete='off'>
           <TextField
-            id='outlined-basic'
+            id='standard-basic'
             label='Search By Title'
-            variant='outlined'
+            variant='standard'
             type='search'
             name={"title"}
             value={title}
             onChange={handleChange}
           />
           <TextField
-            id='outlined-basic'
+            id='standard-basic'
             label='Search By Year'
-            variant='outlined'
+            variant='standard'
             type='search'
             name={"year"}
             value={year}
