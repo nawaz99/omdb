@@ -7,7 +7,7 @@ const fullplot = (props) => {
 
   const fetchfunc = async () => {
     await fetch(
-      `http://www.omdbapi.com/?type=series&i=${id}&plot=full&apikey=4098853d`,
+      `https://www.omdbapi.com/?type=series&i=${id}&plot=full&apikey=4098853d`,
     )
       .then((res) => res.json())
       .then((data) => {

@@ -12,7 +12,7 @@ const Index = () => {
 
   const fetchfunc = async () => {
     await fetch(
-      `http://www.omdbapi.com/?type=series&y=${year}&s=${title}&apikey=4098853d`,
+      `https://www.omdbapi.com/?type=series&y=${year}&s=${title}&apikey=4098853d`,
     )
       .then((res) => res.json())
       .then((data) => {
